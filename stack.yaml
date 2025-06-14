@@ -1,0 +1,28 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  daily-fetcher:
+    lang: python3-http
+    handler: ./daily-fetcher
+    image: erwanncl/daily-fetcher:latest
+    annotations:
+      schedule: "0 8 * * *"   # Tous les jours à 8h
+    topics:
+      - orders.import
+  file-transformer:
+    lang: python3-http
+    handler: ./file-transformer
+    image: erwanncl/file-transformer:latest
+    topics:
+      - orders.import
+    secrets:
+      - sftp-host
+      - sftp-user
+      - sftp-password
+
+  status-checker:
+    lang: python3-http
+    handler: ./status-checker
+    image: erwanncl/status-checker:latest

@@ -1,0 +1,4 @@
+order_id,product,quantity,customer,Processed-Date,process_by
+101,chaise,2,alIce,2025-06-05 14:11:54,US6
+102,bureau,1,bOB,2025-06-05 14:11:54,US6
+103,lampe,4,carlA,2025-06-05 14:11:54,US6
